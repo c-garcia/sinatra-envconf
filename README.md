@@ -43,6 +43,9 @@ we should decide which environment variable will point to it. For the sake of cl
 Also, if a var with the `_CONFIG_FILE` suffix is found, the configuration file will be looked up
 directly through there.
 
+Last but not least, the settings `conf_env` and `conf_location` will be created containing the 
+environment variable name and the resolved file location.
+
 # License
 
 Copyright 2015 Crist&oacute;bal Garc&iacute;a
