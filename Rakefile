@@ -61,6 +61,8 @@ end
 
 task :test => ['rspec:term']
 
+task :default => ['test']
+
 # Misc tasks
 namespace :info do
   desc 'List loaded gems (useful to verify bundle exec)'
