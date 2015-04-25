@@ -18,19 +18,6 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/c-garcia/sinatra-envconf'
 
   s.add_runtime_dependency 'sinatra', '~>1.4'
-  s.add_runtime_dependency 'bundler', '~>1.9'
+  s.add_development_dependency 'bundler', '~>1.9'
 
-  # General 
-  s.add_development_dependency 'pry', '~>0.10'
-  s.add_development_dependency 'rake', '~>10.4'
-
-  # Testing
-  s.add_development_dependency 'rspec-core', '~>3.2'
-  s.add_development_dependency 'rspec-expectations', '~>3.2'
-  s.add_development_dependency 'rspec-mocks', '~>3.2'
-  s.add_development_dependency 'rack-test', '~>0.6'
-
-  # Documentation
-  s.add_development_dependency 'yard', '~>0.8'
-  s.add_development_dependency 'kramdown', '~>1.6'
 end
