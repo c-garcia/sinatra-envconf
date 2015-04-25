@@ -1,3 +1,5 @@
-module Sinatra::EnvConf
-  VERSION = '0.1.5'
+module Sinatra
+  module EnvConf
+    VERSION = '0.1.6'
+  end
 end
