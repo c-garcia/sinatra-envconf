@@ -1,10 +1,10 @@
-Sinatra extension to allow to locate the application configuration file in YAML format via an
+Sinatra extension to allow to locate the application configuration file (in YAML format) via an
 environment variable. 
 
 # Goals
 
 * Make easy to test multiple configurations
-* Deploy sinatra apps as gems keeping their configuration intact in directories outside of the 
+* Deploy sinatra apps as gems keeping their configuration intact in directories out of the 
   `rubygems` control.
 
 # How to use it
