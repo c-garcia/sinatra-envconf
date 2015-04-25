@@ -1,6 +1,8 @@
 Sinatra extension to allow to locate the application configuration file (in YAML format) via an
 environment variable. 
 
+[![Build Status](https://travis-ci.org/c-garcia/sinatra-envconf.svg)](https://travis-ci.org/c-garcia/sinatra-envconf)
+
 # Goals
 
 * Make easy to test multiple configurations
