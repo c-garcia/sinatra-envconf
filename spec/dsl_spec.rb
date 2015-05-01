@@ -30,12 +30,12 @@ describe "Given an application directory with a configuration file on the 'confi
 
     describe "and a environnment var pointing to it" do
 
-      describe 'when a DSL-based Sinatra application is created with env_based_config pointing to this env var' do 
+      describe 'when a DSL-based Sinatra application is created with config_env_var pointing to this env var' do 
 
         it 'finds the configuration file and makes the keys available through settings' do
           get '/'
           expect(JSON.parse(last_response.body, :symbolize_names => true)).to eql(
-            {option1: "it worked!", conf_env: "APPDSL", conf_location: "#{conf_dir}/test.yml"}
+            {option1: "it worked!", config_env_var: "APPDSL", config_location: "#{conf_dir}/test.yml"}
           )
         end
 

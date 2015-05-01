@@ -33,7 +33,7 @@ we should decide which environment variable will point to it. For the sake of cl
     class MyApp < Sinatra::Base
 
       register Sinatra::EnvConf
-      env_based_conf 'APP1'
+      config_env_var 'APP1'
       get '/' do
         headers['Content-type'] = 'application/json'
         {message: settings.message}.to_json
@@ -43,7 +43,7 @@ we should decide which environment variable will point to it. For the sake of cl
 Also, if a var with the `_CONFIG_FILE` suffix is found, the configuration file will be looked up
 directly through there.
 
-Last but not least, the settings `conf_env` and `conf_location` will be created containing the 
+Last but not least, the settings `config_env_var` and `config_location` will be created containing the 
 environment variable name and the resolved file location.
 
 # License

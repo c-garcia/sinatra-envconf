@@ -13,7 +13,7 @@ module Sinatra
   # 1. It will try to find, parse and create settings for a file named as the environment plus
   #   the .yml extension located in `MY_APP/config`.
   #
-  # Additionally, the settings `conf_env` and `conf_location` will be created pointing to the
+  # Additionally, the settings `config_env_var` and `config_location` will be created pointing to the
   # environment variable name and the resolved file.
   module EnvConf
     private
@@ -40,20 +40,20 @@ module Sinatra
     public
       
     # Method that will be exported to the Sinatra app. It creates a setting
-    # for every key found in the YAML file plus conf_env and conf_location
+    # for every key found in the YAML file plus config_env_var and config_location
     # as explained above.
     #
     # @param env_var [String] the environment variable name
     # return [NilClass] nothing
     # @raise [Exception] any exception when reading or processing the yaml
     #   file
-    def env_based_config(env_var)
+    def config_env_var(env_var)
 
-      set :conf_env, env_var
+      set :config_env_var, env_var
 
       cfg_location = config_file_location(env_var)
       
-      set :conf_location, cfg_location
+      set :config_location, cfg_location
       
       YAML.load_file(cfg_location).each do |k,v|
         opt = k.to_sym
@@ -69,6 +69,6 @@ module Sinatra
     
   end
   register EnvConf
-  #Delegator.delegate :env_based_config
+  #Delegator.delegate :config_env_var
 end
 

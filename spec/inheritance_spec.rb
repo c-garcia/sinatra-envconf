@@ -22,21 +22,21 @@ describe "Given an application directory" do
           f.write(conf)
         end
 
-        describe 'when a Sinatra application is created with env_based_config pointing to this env_var and the SUT inherits from it' do
+        describe 'when a Sinatra application is created with config_env_var pointing to this env_var and the SUT inherits from it' do
 
           class AppB < Sinatra::Base
 
             set :environment, :test
             register Sinatra::EnvConf
 
-            env_based_config 'APPC'
+            config_env_var 'APPC'
           end
 
           class App < AppB
             get '/' do
               headers['Content-type'] = 'application/json'
               
-              {option1: settings.option1, conf_env: settings.conf_env, conf_location: settings.conf_location}.to_json
+              {option1: settings.option1, config_env_var: settings.config_env_var, config_location: settings.config_location}.to_json
             end
           end
 
@@ -44,7 +44,7 @@ describe "Given an application directory" do
             it 'finds the configuration file and makes the keys available through settings' do
               get '/'
               expect(JSON.parse(last_response.body, :symbolize_names => true)).to eql(
-                {option1: "it worked!", conf_env: "APPC", conf_location: "#{conf_dir}/test.yml"}
+                {option1: "it worked!", config_env_var: "APPC", config_location: "#{conf_dir}/test.yml"}
               )
             end
           end
