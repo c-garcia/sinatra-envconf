@@ -1,0 +1,61 @@
+require 'bundler'
+Bundler.setup
+require 'sinatra/base'
+require 'sinatra/envconf'
+require 'spec_helper'
+require 'json'
+require 'yaml'
+
+
+describe "Given an application directory" do
+
+  Dir.mktmpdir("rack_test") do |tmp_dir|
+    conf_dir = "#{tmp_dir}/config"
+    Dir.mkdir(conf_dir)
+
+    describe "and a environnment var pointing to it" do
+      ENV['APPC'] = tmp_dir
+
+      describe "and a configuration file in the config subdirectory" do
+        conf = {option1: "it worked!"}.to_yaml
+        File.open(File.expand_path("test.yml", conf_dir), 'w') do |f|
+          f.write(conf)
+        end
+
+        describe 'when a Sinatra application is created with env_based_config pointing to this env_var and the SUT inherits from it' do
+
+          class AppB < Sinatra::Base
+
+            set :environment, :test
+            register Sinatra::EnvConf
+
+            env_based_config 'APPC'
+          end
+
+          class App < AppB
+            get '/' do
+              headers['Content-type'] = 'application/json'
+              
+              {option1: settings.option1, conf_env: settings.conf_env, conf_location: settings.conf_location}.to_json
+            end
+          end
+
+          describe App do
+            it 'finds the configuration file and makes the keys available through settings' do
+              get '/'
+              expect(JSON.parse(last_response.body, :symbolize_names => true)).to eql(
+                {option1: "it worked!", conf_env: "APPC", conf_location: "#{conf_dir}/test.yml"}
+              )
+            end
+          end
+
+        end
+
+      end
+
+    end
+
+  end
+
+end
+

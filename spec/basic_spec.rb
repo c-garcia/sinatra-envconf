@@ -22,7 +22,7 @@ describe "Given an application directory" do
           f.write(conf)
         end
 
-        describe 'when the Sinatra application is created with env_based_config pointing to this directory' do
+        describe 'when the Sinatra application is created with env_based_config pointing to this env_var' do
 
           class App1 < Sinatra::Base 
 

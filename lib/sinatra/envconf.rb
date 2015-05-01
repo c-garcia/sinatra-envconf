@@ -66,6 +66,9 @@ module Sinatra
       $stderr.puts "error when accessing config file #{e.message}" if logging?
       raise e
     end
+    
   end
+  register EnvConf
+  #Delegator.delegate :env_based_config
 end
 
